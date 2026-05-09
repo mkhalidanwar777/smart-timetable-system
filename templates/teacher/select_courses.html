@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Select Courses</h1>
+
+<form method="POST">
+
+    {% set semesters = ['2nd', '4th', '6th', '8th'] %}
+
+    {% for sem in semesters %}
+        <div class="semester-section">
+            <h2>Semester: {{ sem }}</h2>
+
+            <div class="courses-grid">
+                {% for course in courses %}
+                    {% if course.semester == sem %}
+                        <label class="course-card {% if course.id|string in selected_courses %}selected{% endif %}">
+                            
+                            <input
+                                type="checkbox"
+                                name="course_ids"
+                                value="{{ course.id }}"
+                                {% if course.id|string in selected_courses %}checked{% endif %}
+                                onchange="this.closest('.course-card').classList.toggle('selected', this.checked)"
+                            >
+
+                            <div class="course-card-content">
+                                <h3>{{ course.course_name }}</h3>
+
+                                <p><strong>Credit Hours:</strong> {{ course.credit_hours }}</p>
+                                <p><strong>Type:</strong> {{ course.course_type|capitalize }}</p>
+                            </div>
+                        </label>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn" style="margin-top: 30px;">
+        Save Selected Courses
+    </button>
+
+</form>
+{% endblock %}

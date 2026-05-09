@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>My Selected Courses</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Course Name</th>
+        <th>Semester</th>
+        <th>Credit Hours</th>
+        <th>Course Type</th>
+        <th>Action</th>
+    </tr>
+
+    {% for course in selected_courses %}
+    <tr>
+        <td>{{ course.id }}</td>
+        <td>{{ course.course_name }}</td>
+        <td>{{ course.semester }}</td>
+        <td>{{ course.credit_hours }}</td>
+        <td>{{ course.course_type }}</td>
+        <td>
+            <a href="/teacher/delete-selected-course/{{ course.id }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

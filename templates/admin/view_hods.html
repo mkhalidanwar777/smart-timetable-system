@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>View HODs</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Action</th>
+    </tr>
+
+    {% for hod in hods %}
+    <tr>
+        <td>{{ hod.id }}</td>
+        <td>{{ hod.name }}</td>
+        <td>{{ hod.username }}</td>
+        <td>{{ hod.email }}</td>
+        <td>{{ hod.department }}</td>
+        <td>
+            <a href="/admin/delete-hod/{{ hod.id }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

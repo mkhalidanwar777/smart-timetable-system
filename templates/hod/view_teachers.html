@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>All Teachers</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Action</th>
+    </tr>
+
+    {% for teacher in teachers %}
+    <tr>
+        <td>{{ teacher.id }}</td>
+        <td>{{ teacher.name }}</td>
+        <td>{{ teacher.username }}</td>
+        <td>{{ teacher.email }}</td>
+        <td>{{ teacher.designation }}</td>
+        <td>{{ teacher.department_name }}</td>
+        <td>
+            <a href="/hod/delete-teacher/{{ teacher.id }}">Delete</a> |
+<a href="/hod/reset-password/{{ teacher.id }}">Reset Password</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

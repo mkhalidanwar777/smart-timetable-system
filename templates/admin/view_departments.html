@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>View Departments</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Department Name</th>
+        <th>Action</th>
+    </tr>
+
+    {% for department in departments %}
+    <tr>
+        <td>{{ department.id }}</td>
+        <td>{{ department.name }}</td>
+        <td>
+            <a href="/admin/delete-department/{{ department.id }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Generated Timetable</h1>
+
+{% for semester, days in timetable_data.items() %}
+    <h2 style="margin-top: 30px;">Semester: {{ semester }}</h2>
+
+    <table border="1" cellpadding="10" style="margin-bottom: 30px; width: 100%; border-collapse: collapse;">
+        <tr>
+            <th>Day</th>
+            <th>Slot 1</th>
+            <th>Slot 2</th>
+            <th>Slot 3</th>
+            <th>Slot 4</th>
+        </tr>
+
+        {% for day in day_order %}
+        <tr>
+            <td><strong>{{ day }}</strong></td>
+
+            {% for slot in [1, 2, 3, 4] %}
+            <td>
+                {% set item = days[day][slot] %}
+                {% if item == "Do" %}
+                    Do
+                {% elif item %}
+                    <strong>{{ item.course_name }}</strong><br>
+                    {{ item.teacher_name }}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
+{% endblock %}

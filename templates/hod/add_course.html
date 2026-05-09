@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Course</h1>
+
+<form method="POST">
+    <label for="course_name">Course Name:</label><br>
+    <input type="text" id="course_name" name="course_name" required><br><br>
+
+    <label for="semester">Semester:</label><br>
+    <input type="text" id="semester" name="semester" required><br><br>
+
+    <label for="credit_hours">Credit Hours:</label><br>
+    <input type="number" id="credit_hours" name="credit_hours" required><br><br>
+
+    <label for="course_type">Course Type:</label><br>
+    <select id="course_type" name="course_type" required>
+        <option value="">Select Type</option>
+        <option value="theory">Theory</option>
+        <option value="lab">Lab</option>
+    </select><br><br>
+
+    <button type="submit">Save Course</button>
+</form>
+{% endblock %}

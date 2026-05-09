@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Teacher Course Selections</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Teacher Name</th>
+        <th>Course Name</th>
+        <th>Semester</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    {% for item in data %}
+    <tr {% if item.is_conflict %}style="background-color: #ffcccc;"{% endif %}>
+        <td>{{ item.teacher_name }}</td>
+        <td>{{ item.course_name }}</td>
+        <td>{{ item.semester }}</td>
+        <td>
+            {% if item.is_conflict %}
+                Conflict
+            {% else %}
+                OK
+            {% endif %}
+        </td>
+        <td>
+            <a href="/hod/delete-teacher-selection/{{ item.selection_id }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

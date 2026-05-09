@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Set Availability</h1>
+
+<form method="POST">
+    <div class="availability-section">
+        <h3>Monday Block (Mon - Tue - Wed)</h3>
+        <div class="slot-options">
+            <label><input type="checkbox" name="monday_slots" value="1" {% if 'Monday-1' in selected_slots %}checked{% endif %}> Slot 1</label>
+            <label><input type="checkbox" name="monday_slots" value="2" {% if 'Monday-2' in selected_slots %}checked{% endif %}> Slot 2</label>
+            <label><input type="checkbox" name="monday_slots" value="3" {% if 'Monday-3' in selected_slots %}checked{% endif %}> Slot 3</label>
+            <label><input type="checkbox" name="monday_slots" value="4" {% if 'Monday-4' in selected_slots %}checked{% endif %}> Slot 4</label>
+        </div>
+    </div>
+
+    <div class="availability-section">
+        <h3>Thursday Block (Thu - Fri - Sat)</h3>
+        <div class="slot-options">
+            <label><input type="checkbox" name="thursday_slots" value="1" {% if 'Thursday-1' in selected_slots %}checked{% endif %}> Slot 1</label>
+            <label><input type="checkbox" name="thursday_slots" value="2" {% if 'Thursday-2' in selected_slots %}checked{% endif %}> Slot 2</label>
+            <label><input type="checkbox" name="thursday_slots" value="3" {% if 'Thursday-3' in selected_slots %}checked{% endif %}> Slot 3</label>
+            <label><input type="checkbox" name="thursday_slots" value="4" {% if 'Thursday-4' in selected_slots %}checked{% endif %}> Slot 4</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn">Save Availability</button>
+</form>
+{% endblock %}

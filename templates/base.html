@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Timetable System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <h2>Smart Timetable System</h2>
+
+        <a href="/">Home</a>
+
+        {% if session.get('user_id') %}
+            {% if session.get('role') == 'admin' %}
+                <a href="/admin/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+
+            {% elif session.get('role') == 'hod' %}
+                <a href="/hod/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+
+            {% elif session.get('role') == 'teacher' %}
+                <a href="/teacher/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+            {% endif %}
+        {% else %}
+            <a href="/login">Login</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

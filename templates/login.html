@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 400px; margin: 60px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <h1 style="text-align: center;">Login</h1>
+
+    {% if error %}
+        <p style="color: red; text-align: center; font-weight: bold;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <label>Username:</label><br>
+        <input type="text" name="username" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px;">
+
+        <label>Password:</label><br>
+        <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; margin-top: 5px;"><br><br>
+
+        <input type="checkbox" onclick="togglePassword()"> Show Password
+        <br><br>
+
+        <button type="submit" style="width: 100%; padding: 10px; background-color: #2c3e90; color: white; border: none; border-radius: 5px;">
+            Login
+        </button>
+    </form>
+</div>
+
+<script>
+function togglePassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>My Availability</h1>
+
+{% set monday_slots = [] %}
+{% set thursday_slots = [] %}
+
+{% for item in availability %}
+    {% if item.day == 'Monday' %}
+        {% set _ = monday_slots.append(item.slot_number) %}
+    {% elif item.day == 'Thursday' %}
+        {% set _ = thursday_slots.append(item.slot_number) %}
+    {% endif %}
+{% endfor %}
+
+<div class="availability-cards">
+
+    <div class="availability-card">
+        <h2>Monday Block</h2>
+        <p class="days-text">Monday - Tuesday - Wednesday</p>
+
+        {% if monday_slots %}
+            <div class="slot-badges">
+                {% for slot in monday_slots | unique | sort %}
+                    <span class="slot-badge">Slot {{ slot }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-text">No slots selected</p>
+        {% endif %}
+    </div>
+
+    <div class="availability-card">
+        <h2>Thursday Block</h2>
+        <p class="days-text">Thursday - Friday - Saturday</p>
+
+        {% if thursday_slots %}
+            <div class="slot-badges">
+                {% for slot in thursday_slots | unique | sort %}
+                    <span class="slot-badge">Slot {{ slot }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-text">No slots selected</p>
+        {% endif %}
+    </div>
+
+</div>
+
+<div style="margin-top: 25px;">
+    <a href="/teacher/set-availability" class="btn">Edit Availability</a>
+</div>
+{% endblock %}
